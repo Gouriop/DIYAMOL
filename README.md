@@ -36,11 +36,5 @@ A bold, dark-themed personal link and profile hub for **Diya Sarah James**, Arts
 ---
 
 ### 🚀 Deployment
-Can be automatically deployed on Vercel via GitHub:
-1. Double-click `push_to_github.bat` or run:
-   ```bash
-   git add .
-   git commit -m "Deploy Diya Sarah James portfolio"
-   git push -u origin main
-   ```
-2. Import the repository in [Vercel](https://vercel.com) for instant zero-config deployment.
+Automatically built and deployed on Vercel via GitHub:
+[https://github.com/Gouriop/DIYAMOL.git](https://github.com/Gouriop/DIYAMOL.git)
