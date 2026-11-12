@@ -1,37 +1,38 @@
-# Diya Sarah James &bull; Dark Editorial Bio-Link & Portfolio Web App
+# Diya Sarah James &bull; Dark Minimal Editorial Bio-Link Web App
 
-A bold, dark-themed personal link and profile hub for **Diya Sarah James**, Arts Secretary at Christ College of Engineering (CCE) Students' Union.
+A sleek, minimal personal link hub and profile portfolio for **Diya Sarah James**, based in **Bangalore, India**.
 
 ---
 
 ### 🌟 Design & Theme
-- **Theme:** Peacock Green (`#00b49f`) and Crisp White (`#ffffff`) on Deep Matte Dark Slate (`#070e12`).
-- **Typography:** Google Fonts *Bebas Neue* for high-impact condensed hero names (`DIYA` in white, `SARAH JAMES` in peacock green) and *Plus Jakarta Sans* for readable, modern body copy.
-- **Hero Photo:** `diya.jpeg` portrait with smooth multi-directional gradient vignette fading naturally into the dark background.
-- **Academic & Social Links:** Direct links to LinkedIn (`https://www.linkedin.com/in/diya-sarah-james/`), LinkedIn Contact Info (`https://www.linkedin.com/in/diya-sarah-james/overlay/contact-info/`), and Christ College of Engineering (`https://cce.edu.in`).
+- **Theme:** Dynamic Red - Yellow Flame (`#ff3b30` to `#ffd60a`) with warm amber accents on Deep Obsidian Black (`#09090b`).
+- **Typography:** Google Fonts *Bebas Neue* for high-impact condensed hero names (`DIYA` in white, `SARAH JAMES` in a glowing red-to-yellow gradient) and *Plus Jakarta Sans* for clean, modern typography.
+- **Hero Portrait:** `diya.jpg` with smooth multi-directional dark vignette overlay.
+- **Tagline:** **`EXPLORING`** with an animated pulsing amber-yellow status badge.
+- **Location:** **`BANGLORE • INDIA`** with Google Maps link.
 
 ---
 
-### 🔘 Action Buttons
-- **Peacock Green Primary Button:** Connect on LinkedIn (`https://www.linkedin.com/in/diya-sarah-james/`).
-- **Outline Action Buttons:**
-  - View Contact Information (`https://www.linkedin.com/in/diya-sarah-james/overlay/contact-info/`)
-  - Christ College of Engineering (`https://cce.edu.in`)
-- *Custom buttons can be added, rearranged, or deleted anytime in Editor Mode.*
+### 🔘 Action Buttons & Social Links
+- **Dynamic Flame Primary Button:** [Connect on LinkedIn](https://www.linkedin.com/in/diya-sarah-james/)
+- **Outline Buttons:**
+  - [View Contact Information](https://www.linkedin.com/in/diya-sarah-james/overlay/contact-info/)
+  - [Send an Email](mailto:diyasjames@gmail.com)
+- **Direct Contact Items:**
+  - Phone: `9995437675 (Mobile)`
+  - Email: `diyasjames@gmail.com`
+- **Social Icons:** LinkedIn Profile, LinkedIn Contact Info, and direct WhatsApp chat.
 
 ---
 
-### 🔒 Editor Login & Real-Time Cloud Sync
+### 🔒 Editor Login & Customization
 - Click **`Login`** in the top-right corner.
 - **Passcode:** `diya123`
-- **Real-Time Cross-Device Sync:**
-  - Whenever you add a link, remove a link, update info, or upload a photo, it is automatically synced to the cloud in real-time.
-  - Anyone who opens or clicks your link from WhatsApp, LinkedIn, mobile, or desktop will see the latest updates instantly!
 - **When Unlocked (Editor Mode):**
-  - **`Add Link`**: Add custom buttons (choose Primary Peacock Green or Outline).
+  - **`Add Link`**: Add custom buttons (Dynamic Flame Primary or Frosted Outline).
   - **`Delete Link`**: Hover over any button and click `×` to remove.
-  - **`Change Photo`**: Click the camera pill on the right side to upload Diya Sarah James's picture from your computer or phone (automatically compressed client-side).
-  - **`Edit Info`**: Update name, title, department, bio, phone, email, or Google Maps location URL.
+  - **`Change Photo`**: Click the camera pill on the right side to upload a new picture (automatically compressed client-side).
+  - **`Edit Info`**: Update name, tagline, bio, phone, email, or location.
 
 ---
 

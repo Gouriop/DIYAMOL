@@ -1,36 +1,35 @@
 /**
- * Diya Sarah James • Dark Editorial Portfolio & Bio-Link Web App
- * Theme: Peacock Green (#00b49f) & Crisp White (#ffffff) on Deep Matte Dark Slate (#070e12)
+ * Diya Sarah James • Dark Minimal Editorial Web App
+ * Dynamic Red - Yellow Flame Theme
  * Passcode: diya123
- * Real-time Cloud Synchronization via REST API
  */
 
 const PASSWORD_KEY = "diya123";
 const CLOUD_API_ENDPOINT = "https://api.restful-api.dev/objects/ff808181a09d98f701a1d077cf77184c";
 
-const DEFAULT_PHOTO = "diya.jpeg";
+const DEFAULT_PHOTO = "diya.jpg";
 
 const DEFAULT_DETAILS = {
   nameFirst: "DIYA",
   nameLast: "SARAH JAMES",
-  eyebrow: "THRISSUR • CHRIST COLLEGE OF ENGINEERING",
-  locationUrl: "https://cce.edu.in",
-  role: "Arts Secretary • Christ College of Engineering",
-  desc: "Arts Secretary at Christ College of Engineering Students' Union. Driving cultural initiatives, creative platforms, student engagement, and engineering innovation.",
-  phone: "",
-  email: ""
+  eyebrow: "BANGLORE • INDIA",
+  locationUrl: "https://maps.google.com/?q=Bangalore",
+  role: "EXPLORING",
+  desc: "Exploring creative tech, modern design, culture, and new horizons. Based in Bangalore.",
+  phone: "9995437675",
+  email: "diyasjames@gmail.com"
 };
 
 const DEFAULT_LINKS = [
   { id: "1", title: "Connect on LinkedIn", url: "https://www.linkedin.com/in/diya-sarah-james/", isPrimary: true },
   { id: "2", title: "View Contact Information", url: "https://www.linkedin.com/in/diya-sarah-james/overlay/contact-info/", isPrimary: false },
-  { id: "3", title: "Christ College of Engineering", url: "https://cce.edu.in", isPrimary: false }
+  { id: "3", title: "Send an Email", url: "mailto:diyasjames@gmail.com", isPrimary: false }
 ];
 
-const STORAGE_LINKS_KEY = "diya_hero_links_v1";
-const STORAGE_DETAILS_KEY = "diya_profile_details_v1";
-const STORAGE_PHOTO_KEY = "diya_hero_photo_v1";
-const STORAGE_AUTH_KEY = "diya_auth_session_v1";
+const STORAGE_LINKS_KEY = "diya_hero_links_v2";
+const STORAGE_DETAILS_KEY = "diya_profile_details_v2";
+const STORAGE_PHOTO_KEY = "diya_hero_photo_v2";
+const STORAGE_AUTH_KEY = "diya_auth_session_v2";
 
 let links = [];
 let heroPhoto = "";
@@ -43,13 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
   setupEvents();
   render();
 
-  // Initial cloud sync
+  // Cloud sync
   syncFromCloud();
 
-  // Real-time polling every 6 seconds so all devices see updates automatically
-  setInterval(syncFromCloud, 6000);
+  // Periodic background sync (every 30s to stay well within free tier rate limits)
+  setInterval(syncFromCloud, 30000);
 
-  // Sync whenever tab becomes visible or focused
+  // Sync whenever tab becomes focused or visible
   window.addEventListener("focus", syncFromCloud);
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") syncFromCloud();
@@ -81,7 +80,7 @@ function loadData() {
 }
 
 async function syncFromCloud() {
-  if (isSaving) return; // Don't overwrite while user is currently saving
+  if (isSaving) return;
   try {
     const res = await fetch(CLOUD_API_ENDPOINT, { cache: "no-store" });
     if (!res.ok) return;
@@ -117,15 +116,16 @@ async function syncFromCloud() {
       }
     }
   } catch (e) {
-    console.warn("Cloud sync check (offline/network fallback):", e);
+    // Graceful offline fallback
+    console.debug("Local mode active (network or API limit):", e);
   }
 }
 
 async function saveToCloud() {
   isSaving = true;
-  showToast("Saving in real-time across all devices...");
-  
-  // Persist locally first
+  showToast("Saving changes...");
+
+  // Persist locally first for instant offline persistence
   localStorage.setItem(STORAGE_LINKS_KEY, JSON.stringify(links));
   localStorage.setItem(STORAGE_DETAILS_KEY, JSON.stringify(profileDetails));
   localStorage.setItem(STORAGE_PHOTO_KEY, heroPhoto);
@@ -148,13 +148,13 @@ async function saveToCloud() {
     });
 
     if (res.ok) {
-      showToast("Saved! Live in real-time across all devices.");
+      showToast("Saved live in real-time!");
     } else {
-      showToast("Saved locally (cloud sync error).");
+      showToast("Saved locally in your browser.");
     }
   } catch (err) {
-    console.error("Cloud save failed:", err);
-    showToast("Saved locally (offline mode).");
+    console.warn("Cloud save offline fallback:", err);
+    showToast("Saved locally in your browser.");
   } finally {
     isSaving = false;
   }
@@ -185,15 +185,18 @@ function render() {
   document.getElementById("heroRole").textContent = profileDetails.role || DEFAULT_DETAILS.role;
   document.getElementById("heroDesc").textContent = profileDetails.desc || DEFAULT_DETAILS.desc;
 
+  // Phone
   const phoneEl = document.getElementById("contactPhone");
   if (profileDetails.phone && profileDetails.phone.trim().length > 0) {
-    phoneEl.href = `tel:${profileDetails.phone.replace(/[^0-9+]/g, '')}`;
-    phoneEl.querySelector("span").textContent = profileDetails.phone;
+    const cleanPhone = profileDetails.phone.replace(/[^0-9+]/g, "");
+    phoneEl.href = `tel:${cleanPhone}`;
+    phoneEl.querySelector("span").textContent = `${profileDetails.phone} (Mobile)`;
     phoneEl.style.display = "inline-flex";
   } else {
     phoneEl.style.display = "none";
   }
 
+  // Email
   const emailEl = document.getElementById("contactEmail");
   if (profileDetails.email && profileDetails.email.trim().length > 0) {
     emailEl.href = `mailto:${profileDetails.email}`;
@@ -233,7 +236,7 @@ function renderLinks() {
     const wrap = document.createElement("div");
     wrap.className = "link-pill-wrapper";
 
-    const btnClass = item.isPrimary ? "btn btn-peacock" : "btn btn-outline";
+    const btnClass = item.isPrimary ? "btn btn-primary" : "btn btn-outline";
     const fullUrl = ensureUrl(item.url);
 
     wrap.innerHTML = `
@@ -335,8 +338,8 @@ function setupEvents() {
     document.getElementById("inputLocationUrl").value = profileDetails.locationUrl || DEFAULT_DETAILS.locationUrl;
     document.getElementById("inputRole").value = profileDetails.role || DEFAULT_DETAILS.role;
     document.getElementById("inputDesc").value = profileDetails.desc || DEFAULT_DETAILS.desc;
-    document.getElementById("inputPhone").value = profileDetails.phone || "";
-    document.getElementById("inputEmail").value = profileDetails.email || "";
+    document.getElementById("inputPhone").value = profileDetails.phone || DEFAULT_DETAILS.phone;
+    document.getElementById("inputEmail").value = profileDetails.email || DEFAULT_DETAILS.email;
     editDetailsModal.classList.add("open");
   });
 
@@ -352,8 +355,8 @@ function setupEvents() {
       locationUrl: document.getElementById("inputLocationUrl").value.trim() || DEFAULT_DETAILS.locationUrl,
       role: document.getElementById("inputRole").value.trim() || DEFAULT_DETAILS.role,
       desc: document.getElementById("inputDesc").value.trim() || DEFAULT_DETAILS.desc,
-      phone: document.getElementById("inputPhone").value.trim(),
-      email: document.getElementById("inputEmail").value.trim()
+      phone: document.getElementById("inputPhone").value.trim() || DEFAULT_DETAILS.phone,
+      email: document.getElementById("inputEmail").value.trim() || DEFAULT_DETAILS.email
     };
     render();
     editDetailsModal.classList.remove("open");
@@ -438,7 +441,7 @@ function setupEvents() {
   });
 }
 
-// Client-side image compressor: keeps aspect ratio, max 1000px, 0.85 JPEG quality (~80KB)
+// Client-side image compressor: keeps aspect ratio, max 1000px, 0.85 JPEG quality
 function compressImage(file, callback) {
   const reader = new FileReader();
   reader.onload = (e) => {
@@ -480,7 +483,9 @@ function showToast(msg) {
 
 function ensureUrl(url) {
   if (!url) return "#";
-  if (!/^https?:\/\//i.test(url)) return "https://" + url;
+  if (!/^https?:\/\//i.test(url) && !url.startsWith("mailto:") && !url.startsWith("tel:")) {
+    return "https://" + url;
+  }
   return url;
 }
 
